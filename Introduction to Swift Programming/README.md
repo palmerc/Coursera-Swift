@@ -1,6 +1,6 @@
 # Final Assignment
 
-Added five pixel filters
+## Available Image Filters
 
    * Brightness
    * Contrast
