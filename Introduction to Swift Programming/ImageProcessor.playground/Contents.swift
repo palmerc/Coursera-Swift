@@ -6,6 +6,6 @@ import UIKit
 
 // Process the image!
 let image = UIImage(named: "sample")
-let filterNames: Array<PixelFilterType>?
-let imageProcessor = ImageProcessor(image: image, withPixelFiltersNamed: filterNames)
+let filterNames = ["Invert", "Grayscale"]
+let imageProcessor = ImageProcessor(image: image, withPixelFilterNames: filterNames)
 imageProcessor.processImage()

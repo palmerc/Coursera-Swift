@@ -8,22 +8,34 @@ public class ImageProcessor
     var pixelFilters: Array<PixelFilter>?
     var image: UIImage?
 
-    public init(image: UIImage?, withPixelFiltersNamed pixelFilterFiltersNamed: Array<PixelFilterType>?)
+    public init(image: UIImage?, withPixelFilterTypes pixelFilterTypes: Array<PixelFilterType>?)
     {
         if image != nil {
             self.image = image
         }
 
-        if pixelFilterFiltersNamed != nil {
+        if pixelFilterTypes != nil {
             var pixelFilters = [PixelFilter]()
-            for filterName in pixelFilterFiltersNamed! {
-                let pixelFilter = PixelFilterFactory.filterByName(filterName)
+            for pixelFilterType in pixelFilterTypes! {
+                let pixelFilter = PixelFilterFactory.filterByType(pixelFilterType)
                 if (pixelFilter != nil) {
                     pixelFilters.append(pixelFilter!)
                 }
             }
             self.pixelFilters = pixelFilters
         }
+    }
+
+    public convenience init(image: UIImage?, withPixelFilterNames pixelFilterNames: Array<String>?)
+    {
+        var pixelFilterTypes = [PixelFilterType]()
+        if pixelFilterNames != nil {
+            for pixelFilterName in pixelFilterNames! {
+                let pixelFilterType = PixelFilterType(rawValue: pixelFilterName)
+                pixelFilterTypes.append(pixelFilterType!)
+            }
+        }
+        self.init(image: image, withPixelFilterTypes: pixelFilterTypes)
     }
 
     public func processImage() -> UIImage?

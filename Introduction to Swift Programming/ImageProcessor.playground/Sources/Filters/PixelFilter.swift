@@ -2,12 +2,12 @@ import Foundation
 
 
 
-public enum PixelFilterType {
-    case Brightness
-    case Contrast
-    case Gamma
-    case Grayscale
-    case Invert
+public enum PixelFilterType: String {
+    case Brightness = "Brightness"
+    case Contrast = "Contrast"
+    case Gamma = "Gamma"
+    case Grayscale = "Grayscale"
+    case Invert = "Invert"
 }
 
 public protocol PixelFilter
@@ -18,10 +18,10 @@ public protocol PixelFilter
 
 public class PixelFilterFactory
 {
-    class func filterByName(pixelFilterName: PixelFilterType) -> PixelFilter?
+    class func filterByType(pixelFilterType: PixelFilterType) -> PixelFilter?
     {
         var pixelFilter: PixelFilter?
-        switch pixelFilterName {
+        switch pixelFilterType {
         case .Brightness:
             pixelFilter = BrightnessFilter()
             break
